@@ -75,6 +75,10 @@ Description:
 Solves open and closed-ended questions using SQL queries.  
 Extracts meaningful insights based on the dataset.  
 
+## ✉️Email
+
+"Communicate with Stakeholder.pdf" file contains email to communicate with the stakeholders which summarizes the results of my investigation.
+
 ## 📂 Documentation (PDF Reports)
 
 The repository includes detailed exploration reports in PDF format for better understanding:  
