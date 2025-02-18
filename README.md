@@ -95,6 +95,12 @@ Answers questions about data quality and field understanding.
 Contains code, output, and analysis of transaction data.  
 Answers questions about data quality and field understanding.  
 
+📄 4. Closed ended questions 
+Contains SQL queries and output for closed ended questions.
+
+📄 5. Open ended questions 
+Contains SQL queries and output for open ended questions.
+
 ✨ Author
 Anusha Raju
 
