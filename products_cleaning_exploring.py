@@ -9,20 +9,20 @@ cursor = conn.cursor()
 products_df = pd.read_csv("Products.csv")
 
 # Display first few rows of each dataset
-print("\Products Data:") 
+print("\n\nProducts Data:\n") 
 print(products_df.head(10))
 
-print("\nMissing Values before dropping duplicate records:")
+print("\n\nMissing Values before dropping duplicate records:\n")
 print(products_df.isnull().sum())
 
 # Duplicate records in products table
-print("\nNumber of Duplicate records:")
+print("\n\nNumber of Duplicate records:\n")
 print(products_df.duplicated().sum())
 
 # Dropping duplicate rows from products table
 products_df = products_df.drop_duplicates()
 
-print("\nMissing Values after dropping duplicate records:")
+print("\n\nMissing Values after dropping duplicate records:\n")
 print(products_df.isnull().sum())
 
 # Convert BARCODE to string
@@ -38,11 +38,11 @@ products_df['BARCODE'] = pd.to_numeric(products_df['BARCODE'], errors='coerce').
 duplicate_products_df = products_df[products_df['BARCODE'].duplicated(keep=False)]
 
 # Number of duplicate barcodes
-print("\nNumber of duplicate barcode rows is : ")
+print("\n\nNumber of duplicate barcode rows is : \n")
 print(duplicate_products_df.shape[0])
 
 # The percentage of duplicate barcode rows out of the total rows
-print("\nPercentage of duplicate barcode rows out of total rows is: ")
+print("\n\nPercentage of duplicate barcode rows out of total rows is: \n")
 print((duplicate_products_df.shape[0] / products_df.shape[0]) * 100)
 
 # Drop all duplicate barcode values rows from the products table
@@ -58,20 +58,20 @@ for col in products_df.columns:
 # Verify data types
 print(products_df.dtypes)
 
-# Get the total number of unique items in CATEGORY_1 along with their counts
+# Total number of unique items in CATEGORY_1 along with their counts
 category1_counts = products_df["CATEGORY_1"].value_counts().reset_index()
 category1_counts.columns = ["CATEGORY_1", "COUNT"]
-print(category1_counts)
+print(f"\n\nCATEGORY_1 along with their counts: \n{category1_counts}")
 
 # Get the total number of unique items in MANUFACTURER along with their counts
 manufacturers_count = products_df["MANUFACTURER"].value_counts().reset_index()
 manufacturers_count.columns = ["MANUFACTURER", "COUNT"]
-print(manufacturers_count.head(10))
+print(f"\n\nMANUFACTURER along with their counts: \n{manufacturers_count.head(10)}")
 
 # Get the total number of unique items in BRAND along with their counts
 brand_count = products_df["BRAND"].value_counts().reset_index()
 brand_count.columns = ["BRAND", "COUNT"]
-print(brand_count.head(10))
+print(f"\n\nBRAND along with their counts: \n{brand_count.head(10)}")
 
 # Number of unique brands associated with each manufacturer
 manufacturer_brand_count = products_df.groupby("MANUFACTURER")["BRAND"].nunique().reset_index()
@@ -79,21 +79,21 @@ manufacturer_brand_count.columns = ["MANUFACTURER", "BRAND_COUNT"]
 
 # Sort by BRAND_COUNT in descending order
 manufacturer_brand_count = manufacturer_brand_count.sort_values(by="BRAND_COUNT", ascending=False)
-print(manufacturer_brand_count.head(10))
+print(f"\n\nBrands associated with each manufacturer: \n{manufacturer_brand_count.head(10)}")
 
 # Category dependency
 
 # If CATEGORY_1 is 'nan' then CATEGORY_2 is also 'nan'
 category1_nan = products_df[products_df['CATEGORY_1'] == 'nan']
-print(f"CATEGORY_1 -> {category1_nan['CATEGORY_1'].count()} , CATEGORY_2 -> {category1_nan['CATEGORY_2'].count()}\n")
+print(f"\n\nCATEGORY_1 -> {category1_nan['CATEGORY_1'].count()} , CATEGORY_2 -> {category1_nan['CATEGORY_2'].count()}\n")
 
 # If CATEGORY_2 is 'nan' then CATEGORY_3 is also 'nan'
 category2_nan = products_df[products_df['CATEGORY_2'] == 'nan']
-print(f"CATEGORY_2 -> {category2_nan['CATEGORY_2'].count()} , CATEGORY_3 -> {category2_nan['CATEGORY_3'].count()}\n")
+print(f"\n\nCATEGORY_2 -> {category2_nan['CATEGORY_2'].count()} , CATEGORY_3 -> {category2_nan['CATEGORY_3'].count()}\n")
 
 # If CATEGORY_3 is 'nan' then CATEGORY_4 is also 'nan'
 category3_nan = products_df[products_df['CATEGORY_3'] == 'nan']
-print(f"CATEGORY_3 -> {category3_nan['CATEGORY_3'].count()} , CATEGORY_4 -> {category3_nan['CATEGORY_4'].count()}\n")
+print(f"\n\nCATEGORY_3 -> {category3_nan['CATEGORY_3'].count()} , CATEGORY_4 -> {category3_nan['CATEGORY_4'].count()}\n")
 
 # ======================= SAVE TO DB =============================================================
 

@@ -9,13 +9,13 @@ cursor = conn.cursor()
 transactions_df = pd.read_csv("Transaction.csv")
 
 # Display first few rows of each dataset
-print("\nTransactions Data:")
+print("\n\nTransactions Data:\n")
 print(transactions_df.head())
 
-print("\nMissing Values before dropping duplicate records:")
+print("\n\nMissing Values before dropping duplicate records:")
 print(transactions_df.isnull().sum())
 
-print("\nNumber of Duplicate records:")
+print("\n\nNumber of Duplicate records:\n")
 print(transactions_df.duplicated().sum())
 
 # Dropping duplicate rows from transactions table
@@ -34,7 +34,7 @@ transactions_df['FINAL_QUANTITY2'] = pd.to_numeric(transactions_df['FINAL_QUANTI
 filtered_df = transactions_df[transactions_df['FINAL_QUANTITY2'].isna()]
 
 # Getting unique values from the column which are not getting converted properly
-print(f"Unique values in FINAL_QUANTITY where it did not get converted properly: {filtered_df['FINAL_QUANTITY'].unique()}")
+print(f"\n\nUnique values in FINAL_QUANTITY where it did not get converted properly: \n{filtered_df['FINAL_QUANTITY'].unique()}")
 
 # Replace the 'zero' with integer value '0' and convert the column to numeric
 transactions_df['FINAL_QUANTITY'] = transactions_df['FINAL_QUANTITY'].replace('zero', '0')
@@ -50,7 +50,7 @@ transactions_df['FINAL_SALE2'] = pd.to_numeric(transactions_df['FINAL_SALE'], er
 filtered_df = transactions_df[transactions_df['FINAL_SALE2'].isna()]
 
 # Getting unique values from the column which are not getting converted properly
-print(f"Unique values in FINAL SALE where it did not get converted properly: {filtered_df['FINAL_SALE'].unique()}")
+print(f"\n\nUnique values in FINAL SALE where it did not get converted properly: \n{filtered_df['FINAL_SALE'].unique()}")
 
 # # Replace the ' ' with integer value '0' and convert the column to numeric
 transactions_df['FINAL_SALE'] = transactions_df['FINAL_SALE'].replace(' ', '0')
@@ -60,7 +60,7 @@ transactions_df['FINAL_SALE'] = pd.to_numeric(transactions_df['FINAL_SALE'], err
 transactions_df.drop(columns=['FINAL_SALE2'], inplace=True)
 
 # Rechecking if all null values are taken care of or not
-print("Transactions:\n", transactions_df.isnull().sum())
+print("\n\nTransactions:\n", transactions_df.isnull().sum())
 
 # ============================= BARCODE ================================
 
@@ -86,7 +86,7 @@ end_date = transactions_df['SCAN_DATE'].max()
 duration = end_date - start_date
 
 # Print duration of transaction
-print(f"Total duration of transaction data: {duration.days} days")
+print(f"\n\nTotal duration of transaction data: {duration.days} days\n")
 
 # ============================= FINAL_SALE & FINAL_QUANTITY INCONSISTENCY ================================
 
@@ -118,7 +118,7 @@ scan_before_purchase = transactions_df[transactions_df['SCAN_DATE_ONLY'] < trans
 count_scan_before_purchase = scan_before_purchase.shape[0]
 
 # Display results
-print(f"Number of rows where SCAN_DATE_ONLY is before PURCHASE_DATE_ONLY: {count_scan_before_purchase}")
+print(f"\n\nNumber of rows where SCAN_DATE_ONLY is before PURCHASE_DATE_ONLY: {count_scan_before_purchase}\n\n")
 
 # Display some of these rows
 print(scan_before_purchase[['PURCHASE_DATE_ONLY', 'SCAN_DATE_ONLY']].head(10))

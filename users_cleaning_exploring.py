@@ -9,14 +9,14 @@ cursor = conn.cursor()
 users_df = pd.read_csv("USER.csv")
 
 # Display first few rows of each dataset
-print("Users Data:") 
+print("\n\nUsers Data:\n") 
 print(users_df.head(10))
 
-print("\nMissing Values before dropping duplicate records:")
+print("\n\nMissing Values before dropping duplicate records:\n")
 print(users_df.isnull().sum())
 
 # Duplicate records in users table
-print("\nNumber of Duplicate records:")
+print("\n\nNumber of Duplicate records:\n")
 print(users_df.duplicated().sum())
 
 # =============================== CONVERT TO PROPER DATATYPE =======================================
@@ -35,15 +35,15 @@ users_df['GENDER'] = users_df['GENDER'].astype(str)
 print(users_df.dtypes)
 
 # Check the unique values in each column
-print("\nUnique STATE values\n",users_df['STATE'].unique())
-print("\nUnique LANGUAGE values\n",users_df['LANGUAGE'].unique())
-print("\nUnique GENDER values\n",users_df['GENDER'].unique())
+print("\n\nUnique STATE values\n",users_df['STATE'].unique())
+print("\n\nUnique LANGUAGE values\n",users_df['LANGUAGE'].unique())
+print("\n\nUnique GENDER values\n",users_df['GENDER'].unique())
 
 # Filter the dataframe to include only duplicate users IDs
 duplicate_users_df = users_df[users_df['ID'].duplicated(keep=False)]
 
 # The percentage of duplicate ID rows out of the total rows
-print("\nNumber of duplicate user IDs out of total rows is: ")
+print("\n\nNumber of duplicate user IDs out of total rows is: \n")
 print(duplicate_users_df.shape[0])
 
 
@@ -56,7 +56,7 @@ created_before_birthdate = users_df[users_df['CREATED_DATE'] < users_df['BIRTH_D
 count_created_before_birthdate = created_before_birthdate.shape[0]
 
 # Display results
-print(f"\nNumber of rows where CREATED_DATE is before BIRTH_DATE: {count_created_before_birthdate}")
+print(f"\n\nNumber of rows where CREATED_DATE is before BIRTH_DATE: {count_created_before_birthdate}\n\n")
 
 # Display some of these rows
 print(created_before_birthdate[['ID','BIRTH_DATE', 'CREATED_DATE']].head(10))

@@ -39,7 +39,7 @@ ORDER BY count(receipt_id) DESC
 LIMIT 5
 ;
 """
-
+print("\n\n Top 5 brands by receipts scanned among users 21 and over: \n")
 result1 = pd.read_sql(query1, conn)
 print(result1)
 
@@ -78,7 +78,7 @@ ORDER BY sum(final_sale) DESC
 LIMIT 5
 ;
 """
-
+print("\n\n Top 5 brands by sales among users that have had their account for at least six months: \n")
 result2 = pd.read_sql(query2, conn)
 print(result2)
 
@@ -129,6 +129,8 @@ ORDER BY "Health & Wellness Sales %" DESC
 ;
 
 """
+
+print("\n\n Percentage of sales in the Health & Wellness category by generation \n")
 result3 = pd.read_sql(query3, conn)
 print(result3)
 
@@ -185,6 +187,7 @@ WHERE
 ORDER BY number_transactions DESC, total_sales DESC, account_lifetime_in_months DESC;
 """
 
+print("\n\n Fetch’s Power Users \n")
 result4 = pd.read_sql(query4, conn)
 print(result4)
 
@@ -203,6 +206,8 @@ GROUP BY brand
 ORDER BY total_sales desc
 LIMIT 1
 """
+
+print("\n\n Leading brand in the Dips & Salsa category \n")
 result5 = pd.read_sql(query5, conn)
 print(result5)
 
@@ -230,5 +235,6 @@ FROM user_growth
 WHERE previousTotal != 0
 """
 
+print("\n\n Fetch's growth year over year \n")
 result6 = pd.read_sql(query6, conn)
 print(result6)
